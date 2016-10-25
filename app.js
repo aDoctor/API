@@ -58,8 +58,8 @@ var clinicRouter = require('./Routes/clinicRouter')(Clinic);
 var locationRouter = require('./Routes/locationRouter')(Location);
 
 var calendarDoctorRouter = require('./Routes/calendarDoctorRouter')(CalendarDoctor);
-var insuranceDoctorRouter = require('./Routes/insuranceRouter')(Insurance);
-var insurancePlanDoctorRouter = require('./Routes/insurancePlanRouter')(InsurancePlan);
+var insuranceRouter = require('./Routes/insuranceRouter')(Insurance);
+var insurancePlanRouter = require('./Routes/insurancePlanRouter')(InsurancePlan);
 var insuranceProviderRouter = require('./Routes/insuranceProviderRouter')(InsuranceProvider);
 var visitRouter = require('./Routes/visitRouter')(Visit);
 var visitStatusRouter = require('./Routes/visitStatusRouter')(VisitStatus);
@@ -67,7 +67,7 @@ var imageRouter = require('./Routes/imageRouter')(ImageStatus);
 var reviewRouter = require('./Routes/reviewRouter')(Review);
 
 app.use('/api/books', aDoctorRouter);
-app.use('/api/user', userRouter);
+app.use('/api/user', userRouter); 
 app.use('/api/calendar', calendarRouter);
 app.use('/api/specialty', specialtyRouter);
 app.use('/api/doctor', doctorRouter);
@@ -79,8 +79,8 @@ app.use('/api/state', stateRouter);
 app.use('/api/date', dateRouter);
 //---
 app.use('/api/calendarDoctor', calendarDoctorRouter);
-app.use('/api/insuranceDoctor', insuranceDoctorRouter);
-app.use('/api/insurancePlanDoctor', insurancePlanDoctorRouter);
+app.use('/api/insurance', insuranceRouter);
+app.use('/api/insurancePlan', insurancePlanRouter);
 app.use('/api/insuranceProvider', insuranceProviderRouter);
 app.use('/api/visitRouter', visitRouter);
 app.use('/api/visitStatusRouter', visitStatusRouter);
@@ -90,4 +90,7 @@ app.use('/api/review' ,reviewRouter);
 app.get('/', function (req, res) {
     res.send('Welcome');//send:return back text
 });
-app.listen(port, function () { console.log('Running on PORT:' + port); });
+//app.listen(port, function () { console.log('Running on PORT:' + port); });
+app.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
+});
