@@ -1,13 +1,13 @@
-﻿var express = require('express');
+var express = require('express');
 
 var routes = function (User) {
     var userRouter = express.Router();
     userRouter.route('/')
     .post(function (req, res) {/*POST NEW ITEM*/
-        var book = new Book(req.body);
-        book.save(); /*{"title":"My New Book","genre":"Fiction","author":"Jon Mills"}*/
-        console.log(book);
-        res.status(201).send(book);
+        var user = new User(req.body);
+        user.save(); /*{"title":"My New Book","genre":"Fiction","author":"Jon Mills"}*/
+        console.log(user);
+        res.status(201).send(user);
         /*201: means created*/
         /*send back book as it contain the _id*/
     })
@@ -49,13 +49,16 @@ var routes = function (User) {
                 res.json(req.user);
             })
             .put(function (req, res) {
-                req.user.name = req.body.name;
+                req.user.MRN = req.body.MRN;
+                req.user.firstName = req.body.firstName;
+                req.user.lastName = req.body.lastName;
                 req.user.email = req.body.email;
                 req.user.phoneNumber = req.body.phoneNumber;
                 req.user.password = req.body.password;
                 req.user.passwordSalt = req.body.passwordSalt;
                 req.user.birthdate = req.body.birthdate;
                 req.user.gender = req.body.gender;
+                req.user._insurancePlanID = req.body._insurancePlanID;
                 req.user.save(function (err) {
                     if (err)
                         res.status(500).send(err);

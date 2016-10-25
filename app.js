@@ -1,4 +1,4 @@
-﻿var express = require('express'),
+var express = require('express'),
     mangoose = require('mongoose')/*like entity framework npm install mongoose --save  */,
     bodyParser = require('body-parser'); /*npm install body-parser --save*/ /*TO ADD POST*/
     
@@ -22,9 +22,10 @@ var InsurancePlan = require('./models/insurancePlanModel');//InsurancePlan
 var InsuranceProvider = require('./models/insuranceProviderModel');//InsuranceProvider
 var Visit = require('./models/visitModel');//Visit
 var VisitStatus = require('./models/visitStatusModel');//VisitStatus
+var ImageStatus = require('./models/imageModel');//image
+var Review = require('./models/reviewModel');//review
+
 /*
-
-
 var VisitType = require('./models/visitTypeModel');//State
 */
 
@@ -62,8 +63,8 @@ var insurancePlanDoctorRouter = require('./Routes/insurancePlanRouter')(Insuranc
 var insuranceProviderRouter = require('./Routes/insuranceProviderRouter')(InsuranceProvider);
 var visitRouter = require('./Routes/visitRouter')(Visit);
 var visitStatusRouter = require('./Routes/visitStatusRouter')(VisitStatus);
-
-
+var imageRouter = require('./Routes/imageRouter')(ImageStatus);
+var reviewRouter = require('./Routes/reviewRouter')(Review);
 
 app.use('/api/books', aDoctorRouter);
 app.use('/api/user', userRouter);
@@ -83,7 +84,9 @@ app.use('/api/insurancePlanDoctor', insurancePlanDoctorRouter);
 app.use('/api/insuranceProvider', insuranceProviderRouter);
 app.use('/api/visitRouter', visitRouter);
 app.use('/api/visitStatusRouter', visitStatusRouter);
-
+app.use('/api/image' ,imageRouter);
+app.use('/api/review' ,reviewRouter);
+ 
 app.get('/', function (req, res) {
     res.send('Welcome');//send:return back text
 });
