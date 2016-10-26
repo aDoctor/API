@@ -1,0 +1,21 @@
+# aDoctor API 
+This the API description
+
+### POST results
+
+Get your API key from John
+
+__Endpoint__
+
+https://adoctor.herokuapp.com/api/user
+__Data format__
+
+| Name                     | Format   | Required | Description                                                    |
+| -------------------------| -------- | ---------| ---------------------------------------------------------------|
+| MRN                      | string   | true     | has to be unique                                               |
+| firstName                | string   | true     |                                                                |
+| lastName                 | string   | true     |                                                                |
+| birthdate                | string   | true     | Format: yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'SSS'Z'                 |
+| gender                   | boolean  | true     | True: Male                                                     |
+| phoneNumber              | string   | true     |                                                                |
+| _insurancePlanID         | string   | true     |                                                                |
